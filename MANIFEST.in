@@ -1,0 +1,3 @@
+include README.rst LICENSE AUTHORS
+recursive-include alignak_checks_wmi *.*
+global-exclude *.pyc
