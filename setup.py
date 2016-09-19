@@ -97,7 +97,7 @@ def get_alignak_cfg():
         # Define default directory
         path = "/var/lib/alignak/libexec"
         if alignak_etc_default == "/usr/local/etc/default/alignak":
-            path = "/usr/local/var/lib/alignak/libexec"
+            path = "/usr/local/var/libexec/alignak"
         alignak_cfg['ALIGNAKLIB'] = path
 
     if not os.path.exists(alignak_cfg['ALIGNAKLIB']):
@@ -106,7 +106,6 @@ def get_alignak_cfg():
         return None
 
     return alignak_cfg
-
 
 
 # Overloading setup.py install_data
@@ -280,7 +279,7 @@ setup(
         'Natural Language :: English',
         'Programming Language :: Python',
         'Topic :: System :: Monitoring',
-        'Topic:: System:: Networking:: Monitoring',
+        'Topic :: System :: Networking :: Monitoring',
         'Topic :: System :: Systems Administration'
     ],
 
