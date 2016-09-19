@@ -15,7 +15,7 @@
 __checks_type__ = "snmp"
 
 # Application manifest
-__version__ = u"0.1.0"
+__version__ = u"0.2.0"
 __author__ = u"Frédéric MOHIER"
 __author_email__ = "frederic.mohier@gmail.com"
 __copyright__ = u"(c) 2015 - %s" % __author__
