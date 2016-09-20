@@ -39,22 +39,33 @@ package = import_module(__pkg_name__)
 
 def get_alignak_cfg():
     """
-        Search for an etc/default/alignak file and parse the file to find out main paths
+        Search for an etc/default/alignak file and parse the file to find out Alignak main paths
 
         Returns a dict
     """
-    alignak_cfg = {}
+    alignak_cfg = {
+        'ALIGNAKETC': '/usr/local/etc/alignak',
+        'ALIGNAKVAR': '/usr/local/var/lib/alignak',
+        'ALIGNAKBIN': '/usr/local/bin',
+        'ALIGNAKRUN': '/usr/local/var/run/alignak',
+        'ALIGNAKLOG': '/usr/local/var/log/alignak',
+        'ALIGNAKLIB': '/usr/local/var/libexec/alignak',
+        'ALIGNAKUSER': 'alignak',
+        'ALIGNAKGROUP': 'alignak'
+    }
 
     # Search Alignak main configuration file
-    alignak_etc_default = "/"
+    alignak_etc_default = None
     if os.path.isfile("/usr/local/etc/default/alignak"):
         alignak_etc_default = "/usr/local/etc/default/alignak"
     elif os.path.isfile("/etc/default/alignak"):
         alignak_etc_default = "/etc/default/alignak"
     else:
-        print("Alignak '/etc/default/alignak' not found: " \
-              "Alignak does not seem to be installed on this host!")
-        return None
+        print("Alignak 'default/alignak' file not found. "
+              "You host is probably A Bsd or DragonFly Unix system, else "
+              "Alignak is not installed on this host!\n"
+              "Assuming Unix standard file structure based on /usr/local")
+        return alignak_cfg
 
     # Parse Alignak configuration file
     with open(alignak_etc_default, "r") as etc_file:
@@ -80,26 +91,12 @@ def get_alignak_cfg():
         etc_file.close()
 
     # Check Alignak configuration directory
-    if 'ALIGNAKETC' in alignak_cfg:
-        # Define default directory
-        path = "/etc/alignak"
-        if alignak_etc_default == "/usr/local/etc/default/alignak":
-            path = "/usr/local/etc/alignak"
-        alignak_cfg['ALIGNAKETC'] = path
-
     if not os.path.exists(alignak_cfg['ALIGNAKETC']):
         print("Alignak configuration directory (%s) not found: "
               "does not seem to be installed on this host!" % alignak_cfg['ALIGNAKETC'])
         return None
 
     # Check Alignak plugins directory
-    if not 'ALIGNAKLIB' in alignak_cfg:
-        # Define default directory
-        path = "/var/lib/alignak/libexec"
-        if alignak_etc_default == "/usr/local/etc/default/alignak":
-            path = "/usr/local/var/libexec/alignak"
-        alignak_cfg['ALIGNAKLIB'] = path
-
     if not os.path.exists(alignak_cfg['ALIGNAKLIB']):
         print("Alignak plugins directory (%s) not found: "
               "does not seem to be installed on this host!" % alignak_cfg['ALIGNAKLIB'])
