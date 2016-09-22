@@ -20,11 +20,7 @@ To install the package from the source files:
 ::
    git clone https://github.com/Alignak-monitoring-contrib/alignak-checks-snmp
    cd alignak-checks-snmp
-   mkdir /usr/local/etc/alignak/arbiter_cfg/packs/snmp
-   # Copy configuration files
-   cp -R alignak_checks_snmp/*.cfg /usr/local/etc/alignak/arbiter_cfg/packs/snmp
-   # Copy plugin files
-   cp -R alignak_checks_snmp/plugins/* /usr/local/libexec/alignak
+   sudo python setup.py install
 
 
 Documentation
@@ -33,7 +29,7 @@ Documentation
 Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Edit the */usr/local/etc/alignak/arbiter_cfg/packs/snmp/resources.cfg* file and configure the SNMP community to access remotely to the monitored hosts MIB.
+Edit the */usr/local/etc/alignak/arbiter/packs/snmp/resources.cfg* file and configure the SNMP community to access remotely to the monitored hosts MIB.
 ::
    #-- Default SNMP community
    $SNMPCOMMUNITYREAD$=public
@@ -117,6 +113,6 @@ Contributions to this project are welcome and encouraged ... issues in the proje
 License
 ----------------------------------------
 
-Alignak Pack EXAMPLE is available under the `GPL version 3 license`_.
+Alignak Pack Checks SNMP is available under the `GPL version 3 license`_.
 
 .. _GPL version 3 license: http://opensource.org/licenses/GPL-3.0

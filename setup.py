@@ -5,10 +5,7 @@ import os
 import sys
 import re
 del os.link
-from importlib import import_module
 import fileinput
-import getpass
-from string import Template
 
 try:
     import distutils.core
@@ -30,18 +27,20 @@ elif python_version >= (3,):
     sys.exit("This application is not yet compatible with Python 3.x, sorry!")
 
 
-# Import pack information
-from alignak_checks_snmp import __version__, __author__, __author_email__, __copyright__
-from alignak_checks_snmp import __license__, __url__, __checks_type__
-from alignak_checks_snmp import __name__ as __pkg_name__
-package = import_module(__pkg_name__)
+# Better to use exec to load the package information from a version.py file
+# so to not have to import the package. as of it, the setup.py do not need to be modified
+# for each package that is built from this one...
+with open(os.path.join('version.py')) as fh:
+    manifest = {}
+    exec(fh.read(), manifest)
 
 
 def get_alignak_cfg():
     """
-        Search for an etc/default/alignak file and parse the file to find out Alignak main paths
+        Search for an */usr/local/etc/default/alignak* or *etc/default/alignak* file
+        and parse its content to find out Alignak main paths
 
-        Returns a dict
+        Returns a dict with the found elements and their respective value
     """
     alignak_cfg = {
         'ALIGNAKETC': '/usr/local/etc/alignak',
@@ -107,19 +106,37 @@ def get_alignak_cfg():
 
 # Overloading setup.py install_data
 class my_install_data(_install_data):
+    """
+    Overload the default copy of files
+    """
     def run(self):
+        """
+        Overload the default copy of files:
+        1/ copy the data files in their respective directories
+        2/ parse each file in the to_be_parsed_files list:
+            - search each line with ont of this pattern:
+                ALIGNAKETC
+                ALIGNAKVAR
+                ALIGNAKBIN
+                ALIGNAKRUN
+                ALIGNAKLOG
+                ALIGNAKLIB
+                ALIGNAKUSER
+                ALIGNAKGROUP
+            - replace found pattern with the value determined for each variable
+        """
         # Setuptools install_data ...
         _install_data.run(self)
 
         # After data files installation ...
         # ... parse configuration files to update installation dir
-        if parsed_files:
+        if to_be_parsed_files:
             # Prepare pattern for alignak.cfg
             to_change = re.compile("|".join(alignak_cfg.keys()))
 
-            print("Parsed files: ")
-            for dir, file in parsed_files:
-                print(" parsing %s%s" % (dir,file))
+            print "Parsed files: "
+            for dir,file in to_be_parsed_files:
+                print " parsing %s%s" % (dir,file)
 
                 # Parse file
                 for line in fileinput.input(os.path.join(dir, file), inplace=True):
@@ -127,144 +144,147 @@ class my_install_data(_install_data):
 
                 # Rename .parse file
                 os.rename(os.path.join(dir, file), os.path.join(dir, file[:-6]))
-                print(" parsed %s%s" % (dir,file[:-6]))
+                print " parsed %s%s" % (dir,file[:-6])
 
 # Get default Alignak paths ...
 alignak_cfg = get_alignak_cfg()
 if not alignak_cfg:
     sys.exit("Alignak default paths not found!")
 
-print "Alignak configuration: "
+print "Alignak config: "
 for path in alignak_cfg:
-    print(" %s = %s" % (path, alignak_cfg[path]))
+    print " %s = %s" % (path, alignak_cfg[path])
 
 # Define installation paths
 # Get Alignak root installation directory
 alignak_etc_path = alignak_cfg['ALIGNAKETC']
 # Get Alignak configuration packs directory
-alignak_cfg_path = os.path.join(alignak_cfg['ALIGNAKETC'], 'arbiter_cfg', 'packs', __checks_type__)
+alignak_cfg_path = os.path.join(
+    alignak_cfg['ALIGNAKETC'], 'arbiter', 'packs', manifest["__checks_type__" ]
+)
 # Get Alignak libexec directory
 alignak_libexec_path = alignak_cfg['ALIGNAKLIB']
 
 
 # Build list of all installable package files
 data_files = []
-parsed_files = []
-for subdir, dirs, files in os.walk(__pkg_name__):
+to_be_parsed_files = []
+for subdir, dirs, files in os.walk(manifest["__pkg_name__"]):
     for file in files:
-        if not file.startswith('__'):
-            if subdir and 'plugins' in subdir:
-                data_files.append(
-                    (
-                        os.path.join(
-                            alignak_libexec_path,
-                            re.sub(
-                                r"^(%s\/|%s$)" % (
-                                    os.path.join(__pkg_name__, 'plugins'),
-                                    os.path.join(__pkg_name__, 'plugins')
-                                ),
-                                "",
-                                subdir
-                            )
+        # Ignore files which name starts with __
+        if file.startswith('__'):
+            continue
+
+        # Files in plugins directory will be installed in the plugins directory of Alignak
+        if subdir and 'plugins' in subdir:
+            data_files.append(
+                (os.path.join(
+                    alignak_libexec_path,
+                    re.sub(
+                        r"^(%s\/|%s$)" % (
+                            os.path.join(manifest["__pkg_name__"], 'plugins'),
+                            os.path.join(manifest["__pkg_name__"], 'plugins')
                         ),
-                        [os.path.join(subdir, file)]
+                        "",
+                        subdir
                     )
-                )
-                if file.endswith(".parse"):
-                    parsed_files.append(
-                        (
-                            os.path.join(
-                                alignak_libexec_path,
-                                re.sub(
-                                    r"^(%s\/|%s$)" % (
-                                        os.path.join(__pkg_name__, 'plugins'),
-                                        os.path.join(__pkg_name__, 'plugins')
-                                    ),
-                                    "",
-                                    subdir
-                                )
+                ),
+                [os.path.join(subdir, file)])
+            )
+            if file.endswith(".parse"):
+                to_be_parsed_files.append(
+                    (os.path.join(
+                        alignak_libexec_path,
+                        re.sub(
+                            r"^(%s\/|%s$)" % (
+                                os.path.join(manifest["__pkg_name__"], 'plugins'),
+                                os.path.join(manifest["__pkg_name__"], 'plugins')
                             ),
-                            file
+                            "",
+                            subdir
                         )
-                    )
-            elif subdir and 'ALIGNAKETC' in subdir:
-                data_files.append(
-                    (
-                        os.path.join(
-                            alignak_etc_path,
-                            re.sub(
-                                r"^(%s\/|%s$)" % (
-                                    os.path.join(__pkg_name__, 'ALIGNAKETC'),
-                                    os.path.join(__pkg_name__, 'ALIGNAKETC')
-                                ),
-                                "",
-                                subdir
-                            )
+                    ),
+                    file)
+                )
+
+        # Files in ALIGNAKETC directory will be installed
+        # in the configuration directory of Alignak (etc/alignak)
+        elif subdir and 'ALIGNAKETC' in subdir:
+            data_files.append(
+                (os.path.join(
+                    alignak_etc_path,
+                    re.sub(
+                        r"^(%s\/|%s$)" % (
+                            os.path.join(manifest["__pkg_name__"], 'ALIGNAKETC'),
+                            os.path.join(manifest["__pkg_name__"], 'ALIGNAKETC')
                         ),
-                        [os.path.join(subdir, file)]
+                        "",
+                        subdir
                     )
-                )
-                if file.endswith(".parse"):
-                    parsed_files.append(
-                        (
-                            os.path.join(
-                                alignak_etc_path,
-                                re.sub(
-                                    r"^(%s\/|%s$)" % (
-                                        os.path.join(__pkg_name__, 'ALIGNAKETC'),
-                                        os.path.join(__pkg_name__, 'ALIGNAKETC')
-                                    ),
-                                    "",
-                                    subdir
-                                )
+                ),
+                [os.path.join(subdir, file)])
+            )
+            if file.endswith(".parse"):
+                to_be_parsed_files.append(
+                    (os.path.join(
+                        alignak_etc_path,
+                        re.sub(
+                            r"^(%s\/|%s$)" % (
+                                os.path.join(manifest["__pkg_name__"], 'ALIGNAKETC'),
+                                os.path.join(manifest["__pkg_name__"], 'ALIGNAKETC')
                             ),
-                            file
+                            "",
+                            subdir
                         )
-                    )
-            else:
-                data_files.append(
+                    ),
+                    file)
+                )
+        # Other files will be installed in the pack created directory (etc/alignak/packs/ME)
+        # in the configuration directory of Alignak
+        else:
+            data_files.append(
+                (
+                    os.path.join(
+                        alignak_cfg_path,
+                        re.sub(r"^(%s\/|%s$)" %(manifest["__pkg_name__"], manifest["__pkg_name__"]), "", subdir)
+                    ),
+                    [os.path.join(subdir, file)]
+                )
+            )
+            if file.endswith(".parse"):
+                to_be_parsed_files.append(
                     (
                         os.path.join(
                             alignak_cfg_path,
-                            re.sub(r"^(%s\/|%s$)" %(__pkg_name__, __pkg_name__), "", subdir)
+                            re.sub(r"^(%s\/|%s$)" %(manifest["__pkg_name__"], manifest["__pkg_name__"]), "", subdir)
                         ),
-                        [os.path.join(subdir, file)]
+                        file
                     )
                 )
-                if file.endswith(".parse"):
-                    parsed_files.append(
-                        (
-                            os.path.join(
-                                alignak_cfg_path,
-                                re.sub(r"^(%s\/|%s$)" %(__pkg_name__, __pkg_name__), "", subdir)
-                            ),
-                            file
-                        )
-                    )
 
 # data_files contains all the installable files
 if data_files:
-    print("Installed files: ")
-    for dir,file in data_files:
-        print(" %s = %s" % (dir,file))
+    print "Installed files: "
+    for dir, file in data_files:
+        print " %s = %s" % (dir,file)
 
-# parsed_files contains tuples for files to be parsed (directory, file)
-if parsed_files:
-    print("Parsed files: ")
-    for dir,file in parsed_files:
-        print(" %s = %s" % (dir,file))
+# to_be_parsed_files contains tuples for files to be parsed (directory, file)
+if to_be_parsed_files:
+    print "Parsed files: "
+    for dir, file in to_be_parsed_files:
+        print " %s = %s" % (dir,file)
 
 setup(
-    name=__pkg_name__,
-    version=__version__,
+    name=manifest["__pkg_name__"],
+    version=manifest["__version__"],
 
     # Metadata for PyPI
-    author=__author__,
-    author_email=__author_email__,
-    keywords="alignak monitoring pack checks " + __checks_type__,
-    url=__url__,
-    license=__license__,
-    description=package.__doc__.strip(),
+    author=manifest["__author__"],
+    author_email=manifest["__author_email__"],
+    keywords="alignak monitoring pack checks " + manifest["__checks_type__"],
+    url=manifest["__url__"],
+    license=manifest["__license__"],
+    description=manifest["__description__"],
     long_description=open('README.rst').read(),
 
     classifiers = [
@@ -276,7 +296,6 @@ setup(
         'Natural Language :: English',
         'Programming Language :: Python',
         'Topic :: System :: Monitoring',
-        'Topic :: System :: Networking :: Monitoring',
         'Topic :: System :: Systems Administration'
     ],
 
@@ -290,7 +309,7 @@ setup(
         '': 'README.rst',
         '': 'AUTHORS',
         '': 'LICENSE',
-        '': [os.path.join(__pkg_name__, '*')],
+        '': [os.path.join(manifest["__pkg_name__"], '*')],
     },
 
     # Where to install which file ...
@@ -301,7 +320,8 @@ setup(
     install_requires=[''],
 
     # Entry points (if some) ...
-    entry_points={},
+    entry_points={
+    },
 
     cmdclass={
         'install_data': my_install_data,  # override install_data to set a post install hook
