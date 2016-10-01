@@ -71,8 +71,19 @@ To define the SNMP community to be used per default, edit the *resources.cfg* fi
     $SNMPCOMMUNITYREAD$=public
 
 
-You simply have to tag the concerned hosts with the template `linux-snmp`. The main `linux-snmp` template declares macros used to configure the launched checks. The default values of these macros listed hereunder can be overriden in each host configuration.
+You simply have to tag the concerned hosts with the template `linux-snmp`.
 ::
+
+    define host{
+        use                     linux-snmp
+        host_name               host_snmp
+        address                 127.0.0.1
+    }
+
+
+The main `linux-snmp` template declares macros used to configure the launched checks. The default values of these macros listed hereunder can be overriden in each host configuration.
+::
+
     _SNMPCOMMUNITY      $SNMPCOMMUNITYREAD$
     _SNMP_MSG_MAX_SIZE  65535
 
@@ -91,11 +102,11 @@ You simply have to tag the concerned hosts with the template `linux-snmp`. The m
 
 To set a specific value for an host, declare the same macro in the host definition file.
 ::
+
     define host{
         use                     linux-snmp
-        contact_groups          admins
-        host_name               sim-vm-snmp
-        address                 192.168.0.18
+        host_name               host_snmp
+        address                 127.0.0.1
 
         # Specific values for this host
         # Change warning and critical alerts level for memory
