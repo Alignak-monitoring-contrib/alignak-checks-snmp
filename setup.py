@@ -63,6 +63,8 @@ if not alignak_cfg:
     alignak_cfg, manifest["__pkg_name__"], manifest["__checks_type__"]
 )
 
+for df in data_files:
+    print df
 
 setup(
     name=manifest["__pkg_name__"],
@@ -96,7 +98,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     package_data={
-        '': [os.path.join(manifest["__pkg_name__"], '*')],
+        'my_package': [os.path.join(manifest["__pkg_name__"], '*')],
     },
 
     # Where to install which file ...

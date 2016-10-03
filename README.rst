@@ -1,21 +1,21 @@
 Alignak checks package for SNMP
-======================================
+===============================
 
 Checks pack for monitoring hosts with SNMP
 
 
 Installation
-----------------------------------------
+------------
 
 From PyPI
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~
 To install the package from PyPI:
 ::
    pip install alignak-checks-snmp
 
 
 From source files
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 To install the package from the source files:
 ::
    git clone https://github.com/Alignak-monitoring-contrib/alignak-checks-snmp
@@ -24,18 +24,17 @@ To install the package from the source files:
 
 
 Documentation
-----------------------------------------
+-------------
 
 Configuration
-~~~~~~~~~~~~~~~~~~~~~~~
-
-Edit the */usr/local/etc/alignak/arbiter/packs/snmp/resources.cfg* file and configure the SNMP community to access remotely to the monitored hosts MIB.
+~~~~~~~~~~~~~
+Edit the */usr/local/etc/alignak/arbiter/packs/wmi/resources.cfg* file and configure the domain name, user name and password allowed to access remotely to the monitored hosts WMI.
 ::
    #-- Default SNMP community
    $SNMPCOMMUNITYREAD$=public
 
 Prepare host
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
 Some operations are necessary on the monitored hosts if SNMP remote access is not yet activated.
 ::
    # Install local SNMP agent
@@ -64,7 +63,7 @@ Test remote access with the plugins files:
 
 
 Alignak configuration
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 To define the SNMP community to be used per default, edit the *resources.cfg* file and change the default value.
 ::
@@ -117,12 +116,12 @@ To set a specific value for an host, declare the same macro in the host definiti
 
 
 Bugs, issues and contributing
-----------------------------------------
+-----------------------------
 
 Contributions to this project are welcome and encouraged ... issues in the project repository are the common way to raise an information.
 
 License
-----------------------------------------
+-------
 
 Alignak Pack Checks SNMP is available under the `GPL version 3 license`_.
 
