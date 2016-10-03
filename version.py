@@ -18,7 +18,7 @@ __pkg_name__ = u"alignak_checks_snmp"
 __checks_type__ = u"snmp"
 
 # Application manifest
-__version__ = u"0.2.2"
+__version__ = u"0.2.4"
 __author__ = u"Frédéric MOHIER"
 __author_email__ = u"frederic.mohier@gmail.com"
 __copyright__ = u"(c) 2015 - %s" % __author__

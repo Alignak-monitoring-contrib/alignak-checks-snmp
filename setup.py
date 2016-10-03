@@ -96,9 +96,6 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     package_data={
-        '': 'README.rst',
-        '': 'LICENSE',
-        '': 'AUTHORS',
         '': [os.path.join(manifest["__pkg_name__"], '*')],
     },
 
