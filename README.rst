@@ -26,6 +26,20 @@ To install the package from the source files:
 Documentation
 -------------
 
+Install PERL dependencies for PERL plugins
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+You must install some PERL dependencies for the PERL plugins.
+
+On some Linux distros, you can::
+
+   su -
+   apt-get install libsnmp-perl
+
+Or you can use the PERL *cpan* utility::
+
+    cpan install Net::SNMP
+
+
 Configuration
 ~~~~~~~~~~~~~
 Edit the */usr/local/etc/alignak/arbiter/packs/wmi/resources.cfg* file and configure the domain name, user name and password allowed to access remotely to the monitored hosts WMI.
