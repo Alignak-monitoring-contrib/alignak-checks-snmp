@@ -33,7 +33,7 @@ You must install some PERL dependencies for the PERL plugins.
 On some Linux distros, you can::
 
    su -
-   apt-get install libsnmp-perl
+   apt-get install libsnmp-perl libnet-snmp-perl
 
 Or you can use the PERL *cpan* utility::
 
@@ -42,7 +42,7 @@ Or you can use the PERL *cpan* utility::
 
 Configuration
 ~~~~~~~~~~~~~
-Edit the */usr/local/etc/alignak/arbiter/packs/wmi/resources.cfg* file and configure the domain name, user name and password allowed to access remotely to the monitored hosts WMI.
+Edit the */usr/local/etc/alignak/arbiter/packs/snmp/resources.cfg* file and configure the SNMP community.
 ::
    #-- Default SNMP community
    $SNMPCOMMUNITYREAD$=public
