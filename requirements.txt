@@ -1,1 +1,1 @@
-alignak_setup
+# Nothing special
