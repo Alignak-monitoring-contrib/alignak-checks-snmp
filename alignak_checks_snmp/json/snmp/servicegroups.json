@@ -1,0 +1,14 @@
+[
+    {
+        "_realm": "All",
+        "_sub_realm": true,
+        "action_url": "",
+        "alias": "Linux SNMP NRPE checked services",
+        "imported_from": "alignak-checks-snmp",
+        "name": "linux-snmp",
+        "notes": "",
+        "notes_url": "",
+        "servicegroups": [],
+        "services": []
+    }
+]
