@@ -1,0 +1,115 @@
+[
+    {
+        "_is_template": true,
+        "_realm": "All",
+        "_sub_realm": true,
+        "aggregation": "",
+        "active_checks_enabled": true,
+        "alias": "",
+        "check_period": "24x7",
+        "host": "_dummy",
+        "imported_from": "alignak-checks-snmp",
+        "initial_state": "x",
+        "name": "linux-snmp-service",
+        "notes": "",
+        "notes_url": "",
+        "tags": [
+            "snmp-service"
+        ]
+    },
+    {
+        "_is_template": true,
+        "_realm": "All",
+        "_sub_realm": true,
+        "_templates": [
+            "linux-snmp-service"
+        ],
+        "aggregation": "system",
+        "alias": "Disks",
+        "check_command": "linux_check_snmp_disks",
+        "check_command_args": "",
+        "customs": {
+            "_DETAILLEDESC": "Overall disks usage",
+            "_IMPACT": "Depends on disks, cause system instability",
+            "_FIXACTIONS": "Clean the appropriate disks"
+        },
+        "host": "linux-snmp",
+        "name": "Disks"
+    },
+    {
+        "_is_template": true,
+        "_realm": "All",
+        "_sub_realm": true,
+        "_templates": [
+            "linux-snmp-service"
+        ],
+        "aggregation": "system",
+        "alias": "Cpu",
+        "check_command": "linux_check_snmp_cpu",
+        "check_command_args": "",
+        "customs": {
+            "_DETAILLEDESC": "Detect abnormal CPU usage",
+            "_IMPACT": "Slow down applications hosted by the system",
+            "_FIXACTIONS": "If recurrent situation then make performance audit"
+        },
+        "host": "linux-snmp",
+        "name": "Cpu"
+    },
+    {
+        "_is_template": true,
+        "_realm": "All",
+        "_sub_realm": true,
+        "_templates": [
+            "linux-snmp-service"
+        ],
+        "aggregation": "system",
+        "alias": "Load",
+        "check_command": "linux_check_snmp_load",
+        "check_command_args": "",
+        "customs": {
+            "_DETAILLEDESC": "Detect abnormal CPU usage",
+            "_IMPACT": "Slow down applications hosted by the system",
+            "_FIXACTIONS": "If recurrent situation then make performance audit"
+        },
+        "host": "linux-snmp",
+        "name": "Load"
+    },
+    {
+        "_is_template": true,
+        "_realm": "All",
+        "_sub_realm": true,
+        "_templates": [
+            "linux-snmp-service"
+        ],
+        "aggregation": "system",
+        "alias": "Memory",
+        "check_command": "linux_check_snmp_memory",
+        "check_command_args": "",
+        "customs": {
+            "_DETAILLEDESC": "Check about memory and swap space usage. Too many use of swap space means lacks of memory or memory leaks.",
+            "_IMPACT": "Average : More IO made and important slowed down applications performances.",
+            "_FIXACTIONS": "Search memory processes consumers. Add more memory."
+        },
+        "host": "linux-snmp",
+        "name": "Memory"
+    },
+    {
+        "_is_template": true,
+        "_realm": "All",
+        "_sub_realm": true,
+        "_templates": [
+            "linux-snmp-service"
+        ],
+        "aggregation": "system",
+        "alias": "Network",
+        "check_command": "linux_check_snmp_network_usage",
+        "check_command_args": "",
+        "customs": {
+            "_DETAILLEDESC": "Check bandwidth usage and network communications quality reporting errors and discarded packets.",
+            "_IMPACT": "Average: Slowed down connectivity performance",
+            "_FIXACTIONS": "Audit about network consumers processes and most likely wire quality and bad switches configuration."
+        },
+        "host": "linux-snmp",
+        "name": "NetworkUsage"
+    }
+]
