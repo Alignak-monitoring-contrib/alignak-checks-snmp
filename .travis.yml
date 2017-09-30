@@ -1,0 +1,28 @@
+language: python
+sudo: true
+python:
+  - "2.7"
+
+script:
+  - pip freeze  # so to help eventual debug: know what exact versions are in use can be rather useful.
+
+after_success:
+  - ./package.sh $TRAVIS_BRANCH $TRAVIS_PYTHON_VERSION
+
+deploy:
+  - provider: bintray
+    skip_cleanup: true
+    file: .bintray.json
+    user: ddurieux
+    key:
+      secure: "Cr/SSWC11Y7lEzCCFe1ugeJ9iP8kgmT/AuE4tgCnEN5dGFCU+DVYcr+dxOVx3Zep22xbdTH2Z9lUKHo8CEcbFXnUWC6OyegiFrsRyAt+Wy470nDwEJ+XAIarOer3RSOux1jPuLtjKpW6hLM15DU7Uuwf+ilpMUtCUrneW1PVV+kKmYC6oL1pqSoPkV6H/SSGtY+X/uLVXwpvacHbT8jmuK8lFar/sBgmTUrk/6CTBjZpPjttRClwaUiu7qmcLqGOsn9gM+RLkr16ckrBqzFLf5BCSK8JlNQGkZquDRKKlKgRIlnKZvPU4Gc8eXLfIXEwiaIgSctz7yf5YvAySJBqz5nKVku5csiSgnO8dZe8MF4piK6n5tZqW11iYfDan7YAFZLb2GXNPwM/hjTYwiZ2pZg347p51d8NU5JLYvPI578DylN4PLrpEwpIDeLncZOT6C34+6Q/8qZiQ/yQdWgM87cBCrQEuJb7j1M8QtlwF8tZSG5mlTE88O3XJy2hD+D7WSPz/9IJi4XJqcEmFKpCSxX8YXv3TCkOIQc6E1Zi/AZKEwzBcibAry0XnSV5yDgc+uRRar1+aC/CucElC9obVSSK6nX7Ks2SPwf+UzTi/zM7rBpq93OjHh1XrGxOLAq8GbDQ/Pa4Lg6TxmmueF6fs1AhRdxvXHUkXqd6+LM/cDk="
+    on:
+      branch: develop
+  - provider: bintray
+    skip_cleanup: true
+    file: .bintray.json
+    user: ddurieux
+    key:
+      secure: "Cr/SSWC11Y7lEzCCFe1ugeJ9iP8kgmT/AuE4tgCnEN5dGFCU+DVYcr+dxOVx3Zep22xbdTH2Z9lUKHo8CEcbFXnUWC6OyegiFrsRyAt+Wy470nDwEJ+XAIarOer3RSOux1jPuLtjKpW6hLM15DU7Uuwf+ilpMUtCUrneW1PVV+kKmYC6oL1pqSoPkV6H/SSGtY+X/uLVXwpvacHbT8jmuK8lFar/sBgmTUrk/6CTBjZpPjttRClwaUiu7qmcLqGOsn9gM+RLkr16ckrBqzFLf5BCSK8JlNQGkZquDRKKlKgRIlnKZvPU4Gc8eXLfIXEwiaIgSctz7yf5YvAySJBqz5nKVku5csiSgnO8dZe8MF4piK6n5tZqW11iYfDan7YAFZLb2GXNPwM/hjTYwiZ2pZg347p51d8NU5JLYvPI578DylN4PLrpEwpIDeLncZOT6C34+6Q/8qZiQ/yQdWgM87cBCrQEuJb7j1M8QtlwF8tZSG5mlTE88O3XJy2hD+D7WSPz/9IJi4XJqcEmFKpCSxX8YXv3TCkOIQc6E1Zi/AZKEwzBcibAry0XnSV5yDgc+uRRar1+aC/CucElC9obVSSK6nX7Ks2SPwf+UzTi/zM7rBpq93OjHh1XrGxOLAq8GbDQ/Pa4Lg6TxmmueF6fs1AhRdxvXHUkXqd6+LM/cDk="
+    on:
+      tags: true
