@@ -105,12 +105,15 @@ Alignak configuration
 ~~~~~~~~~~~~~~~~~~~~~
 
 To define the SNMP community to be used per default, edit the *resources.cfg* file and change the default value.
-::
+
+ ::
+
     $SNMPCOMMUNITYREAD$=public
 
 
 You simply have to tag the concerned hosts with the template `linux-snmp`.
-::
+
+ ::
 
     define host{
         use                     linux-snmp
@@ -120,7 +123,8 @@ You simply have to tag the concerned hosts with the template `linux-snmp`.
 
 
 The main `linux-snmp` template declares macros used to configure the launched checks. The default values of these macros listed hereunder can be overriden in each host configuration.
-::
+
+ ::
 
     _SNMPCOMMUNITY      $SNMPCOMMUNITYREAD$
     _SNMP_MSG_MAX_SIZE  65535
@@ -139,7 +143,8 @@ The main `linux-snmp` template declares macros used to configure the launched ch
 
 
 To set a specific value for an host, declare the same macro in the host definition file.
-::
+
+ ::
 
     define host{
         use                     linux-snmp
@@ -159,4 +164,4 @@ To set a specific value for an host, declare the same macro in the host definiti
 Bugs, issues and contributing
 -----------------------------
 
-Contributions to this project are welcome and encouraged ... `issues in the project repository <https://github.com/alignak-monitoring-contrib/alignak-checks-linux-snmp/issues>`_ are the common way to raise an information.
+Contributions to this project are welcome and encouraged ... `issues in the project repository <https://github.com/alignak-monitoring-contrib/alignak-checks-snmp/issues>`_ are the common way to raise an information.
