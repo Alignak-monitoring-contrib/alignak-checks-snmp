@@ -88,14 +88,14 @@ for subdir, dirs, files in os.walk(package_name):
     target = None
     # Plugins directory
     if 'libexec' in subdir:
-        target = os.path.join('var/libexec/alignak',
+        target = os.path.join('share/alignak/libexec',
                               re.sub(r"^(%s\/|%s$)" % (
                                   os.path.join(package_name, 'libexec'),
                                   os.path.join(package_name, 'libexec')),
                                      "", subdir))
     # Configuration directory
     elif 'etc' in subdir:
-        target = os.path.join('etc/alignak',
+        target = os.path.join('share/alignak/etc',
                               re.sub(r"^(%s\/|%s$)" % (
                                   os.path.join(package_name, 'etc'),
                                   os.path.join(package_name, 'etc')),
@@ -103,7 +103,7 @@ for subdir, dirs, files in os.walk(package_name):
 
     # Backend json files directory
     elif 'json' in subdir:
-        target = os.path.join('etc/alignak/backend-json',
+        target = os.path.join('share/alignak/etc/backend-json',
                               re.sub(r"^(%s\/|%s$)" % (
                                   os.path.join(package_name, 'json'),
                                   os.path.join(package_name, 'json')),
