@@ -25,20 +25,18 @@ Alignak checks package for Unix/Linux SNMP checked hosts/services
 Installation
 ------------
 
-The installation of this checks pack will copy some configuration files in the Alignak default configuration directory (eg. */usr/local/etc/alignak*). The copied files are located in the default sub-directory used for the packs (eg. *arbiter/packs*).
+The installation of this checks pack will copy some configuration files in the Alignak default configuration directory (eg. */usr/local/share/alignak/etc*). The copied files are located in the default sub-directory used for the packs (eg. *arbiter/packs*).
 
 From PyPI
 ~~~~~~~~~
-To install the package from PyPI:
-::
+To install the package from PyPI::
 
    sudo pip install alignak-checks-snmp
 
 
 From source files
 ~~~~~~~~~~~~~~~~~
-To install the package from the source files:
-::
+To install the package from the source files::
 
    git clone https://github.com/Alignak-monitoring-contrib/alignak-checks-snmp
    cd alignak-checks-snmp
@@ -66,8 +64,7 @@ Or you can use the PERL *cpan* utility::
 
 Configuration
 ~~~~~~~~~~~~~
-Edit the */usr/local/etc/alignak/arbiter/packs/snmp/resources.cfg* file and configure the SNMP community.
-::
+Edit the */usr/local/share/alignak/etc/arbiter/packs/snmp/resources.cfg* file and configure the SNMP community.::
 
    #-- Default SNMP community
    $SNMPCOMMUNITYREAD$=public
@@ -76,7 +73,7 @@ Edit the */usr/local/etc/alignak/arbiter/packs/snmp/resources.cfg* file and conf
 Prepare host
 ~~~~~~~~~~~~
 Some operations are necessary on the monitored hosts if SNMP remote access is not yet activated.
-::
+ ::
 
    # Install local SNMP agent
    su -
@@ -94,11 +91,11 @@ Some operations are necessary on the monitored hosts if SNMP remote access is no
    =>
       # rocommunity public  default    -V systemonly
       rocommunity public
-   # Restart SNMP agent
-   /etc/init.d/snmpd restart
 
-Test remote access with the plugins files:
-::
+   # Restart SNMP agent
+   sudo systemctl restart snmpd.service
+
+Test remote access with the plugins files::
 
    $ /usr/local/var/libexec/alignak/check_snmp_mem.pl -H 127.0.0.1 -C public -w 80,80 -c 90,95
    Ram : 71%, Swap : 58% : ; OK
@@ -108,12 +105,15 @@ Alignak configuration
 ~~~~~~~~~~~~~~~~~~~~~
 
 To define the SNMP community to be used per default, edit the *resources.cfg* file and change the default value.
-::
+
+ ::
+
     $SNMPCOMMUNITYREAD$=public
 
 
 You simply have to tag the concerned hosts with the template `linux-snmp`.
-::
+
+ ::
 
     define host{
         use                     linux-snmp
@@ -123,7 +123,8 @@ You simply have to tag the concerned hosts with the template `linux-snmp`.
 
 
 The main `linux-snmp` template declares macros used to configure the launched checks. The default values of these macros listed hereunder can be overriden in each host configuration.
-::
+
+ ::
 
     _SNMPCOMMUNITY      $SNMPCOMMUNITYREAD$
     _SNMP_MSG_MAX_SIZE  65535
@@ -142,7 +143,8 @@ The main `linux-snmp` template declares macros used to configure the launched ch
 
 
 To set a specific value for an host, declare the same macro in the host definition file.
-::
+
+ ::
 
     define host{
         use                     linux-snmp
@@ -162,4 +164,4 @@ To set a specific value for an host, declare the same macro in the host definiti
 Bugs, issues and contributing
 -----------------------------
 
-Contributions to this project are welcome and encouraged ... `issues in the project repository <https://github.com/alignak-monitoring-contrib/alignak-checks-linux-snmp/issues>`_ are the common way to raise an information.
+Contributions to this project are welcome and encouraged ... `issues in the project repository <https://github.com/alignak-monitoring-contrib/alignak-checks-snmp/issues>`_ are the common way to raise an information.
