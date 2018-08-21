@@ -3,11 +3,11 @@
     "name": "sed_package_name",
     "repo": "sed_version_repo",
     "subject": "alignak",
-    "desc": "Alignak Web Services modules",
-    "vcs_url": "https://github.com/Alignak-monitoring-contrib/alignak-module-ws.git",
+    "desc": "Alignak checks pack - SNMP",
+    "vcs_url": "https://github.com/Alignak-monitoring-contrib/alignak-checks-snmp.git",
     "website_url": "http://alignak.net",
-    "issue_tracker_url": "https://github.com/Alignak-monitoring-contrib/alignak-module-ws/issues",
-    "labels": ["alignak", "web-services", "ws", "modules"],
+    "issue_tracker_url": "https://github.com/Alignak-monitoring-contrib/alignak-checks-snmp/issues",
+    "labels": ["alignak", "checks", "pack", "snmp"],
     "licenses": ["AGPL-V3"]
   },
   "version": {
@@ -24,5 +24,6 @@
       }
     }
   ],
-  "publish": true
+  "publish": true,
+  "override": true
 }

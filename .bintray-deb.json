@@ -27,5 +27,6 @@
       }
     }
   ],
-  "publish": true
+  "publish": true,
+  "override": true
 }

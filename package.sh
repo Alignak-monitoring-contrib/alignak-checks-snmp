@@ -137,7 +137,7 @@ echo "----------"
 echo "Running fpm..."
 if [ "${output_type}" = "deb" ]; then
    fpm \
-      --force \
+      --verbose --force \
       --input-type ${input_type} \
       --output-type ${output_type} \
       --package "./dist" \
@@ -159,7 +159,7 @@ if [ "${output_type}" = "deb" ]; then
       ./setup.py
 elif [ "${output_type}" = "rpm" ]; then
    fpm \
-      --force \
+      --verbose --force \
       --input-type ${input_type} \
       --output-type ${output_type} \
       --package "./dist" \
@@ -180,7 +180,7 @@ elif [ "${output_type}" = "rpm" ]; then
       ./setup.py
 else
    fpm \
-      --force \
+      --verbose --force \
       --input-type ${input_type} \
       --output-type ${output_type} \
       --package "./dist" \
