@@ -16,16 +16,32 @@ deploy:
   - provider: bintray
     skip_cleanup: true
     file: dist/.bintray-deb.json
-    user: ddurieux
+    user: mohierf
     key:
-      secure: "Cr/SSWC11Y7lEzCCFe1ugeJ9iP8kgmT/AuE4tgCnEN5dGFCU+DVYcr+dxOVx3Zep22xbdTH2Z9lUKHo8CEcbFXnUWC6OyegiFrsRyAt+Wy470nDwEJ+XAIarOer3RSOux1jPuLtjKpW6hLM15DU7Uuwf+ilpMUtCUrneW1PVV+kKmYC6oL1pqSoPkV6H/SSGtY+X/uLVXwpvacHbT8jmuK8lFar/sBgmTUrk/6CTBjZpPjttRClwaUiu7qmcLqGOsn9gM+RLkr16ckrBqzFLf5BCSK8JlNQGkZquDRKKlKgRIlnKZvPU4Gc8eXLfIXEwiaIgSctz7yf5YvAySJBqz5nKVku5csiSgnO8dZe8MF4piK6n5tZqW11iYfDan7YAFZLb2GXNPwM/hjTYwiZ2pZg347p51d8NU5JLYvPI578DylN4PLrpEwpIDeLncZOT6C34+6Q/8qZiQ/yQdWgM87cBCrQEuJb7j1M8QtlwF8tZSG5mlTE88O3XJy2hD+D7WSPz/9IJi4XJqcEmFKpCSxX8YXv3TCkOIQc6E1Zi/AZKEwzBcibAry0XnSV5yDgc+uRRar1+aC/CucElC9obVSSK6nX7Ks2SPwf+UzTi/zM7rBpq93OjHh1XrGxOLAq8GbDQ/Pa4Lg6TxmmueF6fs1AhRdxvXHUkXqd6+LM/cDk="
+      secure: "IkT9c3NTn1qwXTFdzrcd7FILZfV45pQ5hSEKsI85IH/SHRV7Ssvpt0lWtCkrbwHxVyYx0NYV48+cLSnGAVSgy2IQOHZpGOp19JcSPKlHiVp4SxaCYbQr/VALQmE0k5DqedjsR13Gpm9BAh2sxGqT9ALN7R35sBNSrANdnVkfiGeOZwwt7qISuk76i49Cw0t4qGEGpK3iYxPtoGe5+sRJnf2FYueKKFkGbhoqhHL0VwHmtbrdtnJ1fuNnhTF9Tx6qQPHFN/N62GL5DRi8DH4wrYvmfXe3CPTio3/AXu8SixShCWagQgfLZpH2kE7BBRYtLMu1K4+GnLiznRvK0ORfuyq+I4LjMhvhu/vXZT+urGl46NAOlwsEzWzJhDygYpNz4PKlSPfiROuEvdflTyfjzaQXdlzAgYZHZDUETRK+UezBvAyf21r3kZJKfL4hwU6uc+27u6RFRJVVRlhgYVV6IQUh6sfWNuMB+t1cgLthtptfTONwrUzr0mVR19em7dXFfYiWaqYwU2N/UQp2PNJqJItGSA7RE7/CkzW6CVzAm02pNAL+hAOfqHQMS4ZC3gBYJXR1X97gIyt/5KULpKg/aqhOGbnbkYupJ5H4fz/pg3h6EnHaX6PnQzMIxxqCl6rf7lpoRm39VhBad8IQt+xeG51v79L9UnNCyLBTBCpu2tw="
     on:
       branch: develop
   - provider: bintray
     skip_cleanup: true
     file: dist/.bintray-deb.json
-    user: ddurieux
+    user: mohierf
     key:
-      secure: "Cr/SSWC11Y7lEzCCFe1ugeJ9iP8kgmT/AuE4tgCnEN5dGFCU+DVYcr+dxOVx3Zep22xbdTH2Z9lUKHo8CEcbFXnUWC6OyegiFrsRyAt+Wy470nDwEJ+XAIarOer3RSOux1jPuLtjKpW6hLM15DU7Uuwf+ilpMUtCUrneW1PVV+kKmYC6oL1pqSoPkV6H/SSGtY+X/uLVXwpvacHbT8jmuK8lFar/sBgmTUrk/6CTBjZpPjttRClwaUiu7qmcLqGOsn9gM+RLkr16ckrBqzFLf5BCSK8JlNQGkZquDRKKlKgRIlnKZvPU4Gc8eXLfIXEwiaIgSctz7yf5YvAySJBqz5nKVku5csiSgnO8dZe8MF4piK6n5tZqW11iYfDan7YAFZLb2GXNPwM/hjTYwiZ2pZg347p51d8NU5JLYvPI578DylN4PLrpEwpIDeLncZOT6C34+6Q/8qZiQ/yQdWgM87cBCrQEuJb7j1M8QtlwF8tZSG5mlTE88O3XJy2hD+D7WSPz/9IJi4XJqcEmFKpCSxX8YXv3TCkOIQc6E1Zi/AZKEwzBcibAry0XnSV5yDgc+uRRar1+aC/CucElC9obVSSK6nX7Ks2SPwf+UzTi/zM7rBpq93OjHh1XrGxOLAq8GbDQ/Pa4Lg6TxmmueF6fs1AhRdxvXHUkXqd6+LM/cDk="
+      secure: "IkT9c3NTn1qwXTFdzrcd7FILZfV45pQ5hSEKsI85IH/SHRV7Ssvpt0lWtCkrbwHxVyYx0NYV48+cLSnGAVSgy2IQOHZpGOp19JcSPKlHiVp4SxaCYbQr/VALQmE0k5DqedjsR13Gpm9BAh2sxGqT9ALN7R35sBNSrANdnVkfiGeOZwwt7qISuk76i49Cw0t4qGEGpK3iYxPtoGe5+sRJnf2FYueKKFkGbhoqhHL0VwHmtbrdtnJ1fuNnhTF9Tx6qQPHFN/N62GL5DRi8DH4wrYvmfXe3CPTio3/AXu8SixShCWagQgfLZpH2kE7BBRYtLMu1K4+GnLiznRvK0ORfuyq+I4LjMhvhu/vXZT+urGl46NAOlwsEzWzJhDygYpNz4PKlSPfiROuEvdflTyfjzaQXdlzAgYZHZDUETRK+UezBvAyf21r3kZJKfL4hwU6uc+27u6RFRJVVRlhgYVV6IQUh6sfWNuMB+t1cgLthtptfTONwrUzr0mVR19em7dXFfYiWaqYwU2N/UQp2PNJqJItGSA7RE7/CkzW6CVzAm02pNAL+hAOfqHQMS4ZC3gBYJXR1X97gIyt/5KULpKg/aqhOGbnbkYupJ5H4fz/pg3h6EnHaX6PnQzMIxxqCl6rf7lpoRm39VhBad8IQt+xeG51v79L9UnNCyLBTBCpu2tw="
+    on:
+      tags: true
+  - provider: bintray
+    skip_cleanup: true
+    file: dist/.bintray-rpm.json
+    user: mohierf
+    key:
+      secure: "IkT9c3NTn1qwXTFdzrcd7FILZfV45pQ5hSEKsI85IH/SHRV7Ssvpt0lWtCkrbwHxVyYx0NYV48+cLSnGAVSgy2IQOHZpGOp19JcSPKlHiVp4SxaCYbQr/VALQmE0k5DqedjsR13Gpm9BAh2sxGqT9ALN7R35sBNSrANdnVkfiGeOZwwt7qISuk76i49Cw0t4qGEGpK3iYxPtoGe5+sRJnf2FYueKKFkGbhoqhHL0VwHmtbrdtnJ1fuNnhTF9Tx6qQPHFN/N62GL5DRi8DH4wrYvmfXe3CPTio3/AXu8SixShCWagQgfLZpH2kE7BBRYtLMu1K4+GnLiznRvK0ORfuyq+I4LjMhvhu/vXZT+urGl46NAOlwsEzWzJhDygYpNz4PKlSPfiROuEvdflTyfjzaQXdlzAgYZHZDUETRK+UezBvAyf21r3kZJKfL4hwU6uc+27u6RFRJVVRlhgYVV6IQUh6sfWNuMB+t1cgLthtptfTONwrUzr0mVR19em7dXFfYiWaqYwU2N/UQp2PNJqJItGSA7RE7/CkzW6CVzAm02pNAL+hAOfqHQMS4ZC3gBYJXR1X97gIyt/5KULpKg/aqhOGbnbkYupJ5H4fz/pg3h6EnHaX6PnQzMIxxqCl6rf7lpoRm39VhBad8IQt+xeG51v79L9UnNCyLBTBCpu2tw="
+    on:
+      branch: develop
+  - provider: bintray
+    skip_cleanup: true
+    file: dist/.bintray-rpm.json
+    user: mohierf
+    key:
+      secure: "IkT9c3NTn1qwXTFdzrcd7FILZfV45pQ5hSEKsI85IH/SHRV7Ssvpt0lWtCkrbwHxVyYx0NYV48+cLSnGAVSgy2IQOHZpGOp19JcSPKlHiVp4SxaCYbQr/VALQmE0k5DqedjsR13Gpm9BAh2sxGqT9ALN7R35sBNSrANdnVkfiGeOZwwt7qISuk76i49Cw0t4qGEGpK3iYxPtoGe5+sRJnf2FYueKKFkGbhoqhHL0VwHmtbrdtnJ1fuNnhTF9Tx6qQPHFN/N62GL5DRi8DH4wrYvmfXe3CPTio3/AXu8SixShCWagQgfLZpH2kE7BBRYtLMu1K4+GnLiznRvK0ORfuyq+I4LjMhvhu/vXZT+urGl46NAOlwsEzWzJhDygYpNz4PKlSPfiROuEvdflTyfjzaQXdlzAgYZHZDUETRK+UezBvAyf21r3kZJKfL4hwU6uc+27u6RFRJVVRlhgYVV6IQUh6sfWNuMB+t1cgLthtptfTONwrUzr0mVR19em7dXFfYiWaqYwU2N/UQp2PNJqJItGSA7RE7/CkzW6CVzAm02pNAL+hAOfqHQMS4ZC3gBYJXR1X97gIyt/5KULpKg/aqhOGbnbkYupJ5H4fz/pg3h6EnHaX6PnQzMIxxqCl6rf7lpoRm39VhBad8IQt+xeG51v79L9UnNCyLBTBCpu2tw="
     on:
       tags: true
