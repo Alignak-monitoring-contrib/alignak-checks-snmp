@@ -25,13 +25,48 @@ Alignak checks package for Unix/Linux SNMP checked hosts/services
 Installation
 ------------
 
-The installation of this checks pack will copy some configuration files in the Alignak default configuration directory (eg. */usr/local/share/alignak/etc*). The copied files are located in the default sub-directory used for the packs (eg. *arbiter/packs*).
+The installation of this checks pack will copy some configuration files in the Alignak default configuration directory (eg. */usr/local/share/alignak/etc*).
+The copied files are located in the default sub-directory used for the packs (eg. *arbiter/packs* for the Nagios legacy cfg files or *arbiter/backend-json* for the backend importable files).
+
+From Alignak packages repositories
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+More information in the online Alignak documentation. Here is only an abstract...
+
+Debian::
+
+    # Alignak DEB stable packages
+    sudo echo deb https://dl.bintray.com/alignak/alignak-deb-stable xenial main | sudo tee -a /etc/apt/sources.list.d/alignak.list
+    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv D401AB61
+
+    sudo apt-get update
+    sudo apt install python-alignak-checks-snmp
+
+CentOS::
+
+    sudo vi /etc/yum.repos.d/alignak-stable.repo:
+       [Alignak-rpm-stable]
+       name=Alignak RPM stable packages
+       baseurl=https://dl.bintray.com/alignak/alignak-rpm-stable
+       gpgcheck=0
+       repo_gpgcheck=0
+       enabled=1
+
+    sudo yum repolist
+
+    sudo yum install python-alignak-checks-snmp
+
+.. note:: for Python 3 version, replace ``python`` with ``python3`` in the packages name.
 
 From PyPI
 ~~~~~~~~~
 To install the package from PyPI::
 
-   sudo pip install alignak-checks-snmp
+    # Python 2
+    sudo pip install alignak-checks-snmp
+
+    # Python 3
+    sudo pip3 install alignak-checks-snmp
 
 
 From source files
