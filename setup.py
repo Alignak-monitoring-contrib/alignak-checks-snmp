@@ -100,10 +100,6 @@ setup(
     # Unzip Egg
     zip_safe=False,
 
-    cmdclass={
-        "install_data": install_data
-    },
-
     # Package data
     packages=find_packages(),
 
