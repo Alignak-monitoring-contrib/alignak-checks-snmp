@@ -28,6 +28,8 @@ Installation
 The installation of this checks pack will copy some configuration files in the Alignak default configuration directory (eg. */usr/local/share/alignak/etc*).
 The copied files are located in the default sub-directory used for the packs (eg. *arbiter/packs* for the Nagios legacy cfg files or *arbiter/backend-json* for the backend importable files).
 
+.. note:: the default plugins directory used by Alignak is */usr/local/var/libexec* and the installed scripts are not located in this place. You must copy them to the right place!
+
 From Alignak packages repositories
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -99,6 +101,14 @@ Or you can use the PERL *cpan* utility::
 
 Configuration
 ~~~~~~~~~~~~~
+Copy the shipped scripts to the right place for execution::
+
+the */usr/local/share/alignak/etc/arbiter/packs/snmp/resources.cfg* file and configure the SNMP community.::
+
+   #-- Executable scripts directory
+   sudo cp /usr/local/share/alignak/libexec/check_snmp*.pl /usr/local/var/libexec
+
+
 Edit the */usr/local/share/alignak/etc/arbiter/packs/snmp/resources.cfg* file and configure the SNMP community.::
 
    #-- Default SNMP community
