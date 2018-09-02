@@ -35,7 +35,7 @@ deploy:
     key:
       secure: "IkT9c3NTn1qwXTFdzrcd7FILZfV45pQ5hSEKsI85IH/SHRV7Ssvpt0lWtCkrbwHxVyYx0NYV48+cLSnGAVSgy2IQOHZpGOp19JcSPKlHiVp4SxaCYbQr/VALQmE0k5DqedjsR13Gpm9BAh2sxGqT9ALN7R35sBNSrANdnVkfiGeOZwwt7qISuk76i49Cw0t4qGEGpK3iYxPtoGe5+sRJnf2FYueKKFkGbhoqhHL0VwHmtbrdtnJ1fuNnhTF9Tx6qQPHFN/N62GL5DRi8DH4wrYvmfXe3CPTio3/AXu8SixShCWagQgfLZpH2kE7BBRYtLMu1K4+GnLiznRvK0ORfuyq+I4LjMhvhu/vXZT+urGl46NAOlwsEzWzJhDygYpNz4PKlSPfiROuEvdflTyfjzaQXdlzAgYZHZDUETRK+UezBvAyf21r3kZJKfL4hwU6uc+27u6RFRJVVRlhgYVV6IQUh6sfWNuMB+t1cgLthtptfTONwrUzr0mVR19em7dXFfYiWaqYwU2N/UQp2PNJqJItGSA7RE7/CkzW6CVzAm02pNAL+hAOfqHQMS4ZC3gBYJXR1X97gIyt/5KULpKg/aqhOGbnbkYupJ5H4fz/pg3h6EnHaX6PnQzMIxxqCl6rf7lpoRm39VhBad8IQt+xeG51v79L9UnNCyLBTBCpu2tw="
     on:
-      branch: develop
+      all_branches: true
   - provider: bintray
     skip_cleanup: true
     file: dist/.bintray-deb.json
@@ -51,7 +51,7 @@ deploy:
     key:
       secure: "IkT9c3NTn1qwXTFdzrcd7FILZfV45pQ5hSEKsI85IH/SHRV7Ssvpt0lWtCkrbwHxVyYx0NYV48+cLSnGAVSgy2IQOHZpGOp19JcSPKlHiVp4SxaCYbQr/VALQmE0k5DqedjsR13Gpm9BAh2sxGqT9ALN7R35sBNSrANdnVkfiGeOZwwt7qISuk76i49Cw0t4qGEGpK3iYxPtoGe5+sRJnf2FYueKKFkGbhoqhHL0VwHmtbrdtnJ1fuNnhTF9Tx6qQPHFN/N62GL5DRi8DH4wrYvmfXe3CPTio3/AXu8SixShCWagQgfLZpH2kE7BBRYtLMu1K4+GnLiznRvK0ORfuyq+I4LjMhvhu/vXZT+urGl46NAOlwsEzWzJhDygYpNz4PKlSPfiROuEvdflTyfjzaQXdlzAgYZHZDUETRK+UezBvAyf21r3kZJKfL4hwU6uc+27u6RFRJVVRlhgYVV6IQUh6sfWNuMB+t1cgLthtptfTONwrUzr0mVR19em7dXFfYiWaqYwU2N/UQp2PNJqJItGSA7RE7/CkzW6CVzAm02pNAL+hAOfqHQMS4ZC3gBYJXR1X97gIyt/5KULpKg/aqhOGbnbkYupJ5H4fz/pg3h6EnHaX6PnQzMIxxqCl6rf7lpoRm39VhBad8IQt+xeG51v79L9UnNCyLBTBCpu2tw="
     on:
-      branch: develop
+      all_branches: true
   - provider: bintray
     skip_cleanup: true
     file: dist/.bintray-rpm.json
